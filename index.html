@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestão de Tarefas</title>
+    <link rel="stylesheet" href="tarefas.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="tarefas.js"></script>
+</head>
+<body>
+    <div class="container">
+
+        <section>
+            <h1>Gestão de Tarefas</h1>
+
+            <table class="table table-striped">
+
+                <thead>
+                    <tr>                    
+                        <th>Código</th>
+                        <th>Tarefa</th>
+                        <th>Data Limite</th>
+                        <th>Prioridade</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tabela">
+
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td><input class="form-control" type="text" id="tarefa" placeholder="Tarefa"></td>
+                        <td><input class="form-control" type="date" id="data" placeholder="Data Limite"></td>
+                        <td>
+                            <select name="" class="form-control" id="prioridade">
+                                <option selected>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </td>
+                        <td><button id="btnIncluir" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button></td>
+                    </tr>
+                </tfoot>
+
+            </table>
+
+            <div id="alerta" class="alert" role="alert">&nbsp;</div>        
+
+        </section>
+
+        <section class="well">
+            <h2><small>Buscas</small></h2>
+
+                <div class="row">
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="buscarTarefa" placeholder="Tarefa">
+                                <span class="input-group-btn">
+                                    <button id="btnBuscarTarefa" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">                     
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <input type="date" class="form-control" id="buscarData" placeholder="Data Limite">
+                                <span class="input-group-btn">
+                                    <button id="btnBuscarData" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="panel panel-info">
+                        <div class="panel-heading" id="cabecalho">
+                            Resultados
+                        </div>
+
+                        <div class="panel-body">
+                            <ol id="resultados">
+                                
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    
+</body>
+</html>
