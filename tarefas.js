@@ -62,7 +62,7 @@ function incluirTarefa() {
         mostraAlerta('Tarefa incluida com sucesso',1);
         tarefa.innerHTML = '';
         data.innerHTML = '';
-        prioridade.innerHTML = '';
+        prioridade.value = 1;
     }
 
     request.onerror = function (e) {
@@ -104,7 +104,33 @@ function buscarData() {
 }
 
 function atualizarTabela() {
+    var corpoTabela = document.getElementById('tabela');
+    var linhasTabela = '';
+
+    var transaction = bd.transaction(['tarefas']);
+    var objectStore = transaction.objectStore('tarefas');
+    var request = objectStore.openCursor();
     
+    request.onsuccess = function (e) {
+        var cursor = e.target.result;
+
+        if (cursor){
+            linhasTabela += '<tr>'+
+            '<td>'+cursor.key+'</td>' +
+            '<td id="tarefa-'+cursor.key+'">'+cursor.value.tarefa+'</td>'+
+            '<td id="data-'+cursor.key+'">'+cursor.value.data+'</td>'+
+            '<td id="prioridade-'+cursor.key+'">'+cursor.value.prioridade+'</td>'+
+            '<td id="botoes->'+cursor.key+'">'+
+                '<button class="btn btn-info" onclick="editarTarefa('+cursor.key+')"><span class="glyphicon glyphicon-pencil"></button>'+
+                '<button class="btn btn-danger" onclick="apagarTarefa('+cursor.key+')"><span class="glyphicon glyphicon-trash"></button>'+
+            '</td></tr>';
+
+            cursor.continue();
+        } else{
+            corpoTabela.innerHTML = linhasTabela;
+        }
+
+    }
 }
 
 window.addEventListener("load",iniciar,false);
